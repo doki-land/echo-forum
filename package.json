@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "scripts": {
+        "doc": "cargo doc --no-deps --all-features",
+        "test": "cargo test --release",
+        "fmt": "cargo fmt --all",
+        "dev": "dx serve --package skadi-core --platform web",
+        "p": "git push && git push --tags --prune",
+        "reset": "git reset Head~ --soft",
+        "u": "cargo upgrade --workspace"
+    },
+    "packageManager": "pnpm@9.15.0"
+}

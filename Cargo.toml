@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = ["projects/*"]
+default-members = [
+    "projects/echo-backend",
+]
+exclude = [
+    "projects/echo-frontend",
+    "projects/.DS_Store",
+]
+
+[profile.release]
+lto = true
+panic = "abort"
