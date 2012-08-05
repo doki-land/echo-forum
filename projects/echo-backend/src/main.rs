@@ -1,10 +1,8 @@
 use clap::Parser;
-use tie_tie_space::{AppError, AppState};
-use poem::{middleware::Cors, EndpointExt, Route};
-use poem::listener::TcpListener;
+use poem::{listener::TcpListener, middleware::Cors, EndpointExt, Route};
 use poem_openapi::OpenApiService;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres};
-
+use echo_backend::{AppError, AppState};
 
 #[derive(Parser)]
 pub struct App {
@@ -35,13 +33,13 @@ impl App {
         let json = api_service.spec_endpoint();
 
         let app = Route::new()
-            .nest("/tie-tie.json", json)
+            .nest("/echo.json", json)
             .nest("/", api_service)
             .with(
                 Cors::new().allow_origin("*")
                            .allow_credentials(true)
                           .max_age(3600)
-                           .allow_methods(vec!["POST", "OPTIONS"])
+                           .allow_methods(vec!["GET", "POST", "OPTIONS"])
                           .allow_headers(vec!["Origin", "Methods", "Content-Type"])
             )
             // .with(RequestTracing {})

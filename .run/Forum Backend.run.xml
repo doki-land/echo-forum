@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run tie-tie-space" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
-    <option name="command" value="run --package tie-tie-space --bin tie-tie-space" />
+  <configuration default="false" name="Forum Backend" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+    <option name="command" value="run --package echo-backend --bin echo-backend" />
     <option name="workingDirectory" value="file://$PROJECT_DIR$" />
     <envs>
       <env name="DATABASE_URL" value="postgresql://postgres@localhost:5432/tie_tie" />
