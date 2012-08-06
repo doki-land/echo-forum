@@ -1,59 +1,53 @@
 <template>
   <div class="home-page">
-    <nav class="nav-menu">
-      <router-link to="/users" class="nav-item">用户列表</router-link>
-      <router-link to="/posts" class="nav-item">帖子列表</router-link>
-    </nav>
-    <div class="welcome-section">
-      <h1>欢迎来到 TieTie</h1>
-      <p>这是一个简单的社交平台，您可以在这里浏览用户和帖子。</p>
+    <HeaderNavigation />
+    <div class="content">
+      <div class="sections">
+        <div v-for="section in sections" :key="section.title" class="section-wrapper">
+          <SectionCard :section="section" />
+          <div class="section-categories">
+            <CategoryCard
+              v-for="category in section.categories"
+              :key="category.title"
+              :category="category"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// 组件逻辑
+import HeaderNavigation from '@/components/HeaderNavigation.vue'
+import SectionCard from '@/components/SectionCard.vue'
+import CategoryCard from '@/components/CategoryCard.vue'
+import { sections, categories } from '@/mock'
 </script>
 
 <style lang="scss" scoped>
 .home-page {
-  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f5f7fa;
 
-  .nav-menu {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    
-    .nav-item {
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      color: #333;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 
-      &:hover {
-        background-color: #f5f5f5;
-      }
-
-      &.router-link-active {
-        background-color: #e6e6e6;
-        border-color: #ccc;
-      }
-    }
-  }
-
-  .welcome-section {
-    text-align: center;
-    
-    h1 {
-      margin-bottom: 1rem;
-      color: #333;
+    .sections {
+      margin-bottom: 2rem;
     }
 
-    p {
-      color: #666;
-      font-size: 1.1rem;
+    .section-wrapper {
+      margin-bottom: 2rem;
+
+      .section-categories {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
     }
   }
 }
