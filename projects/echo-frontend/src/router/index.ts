@@ -2,6 +2,7 @@ import type {RouteRecordRaw} from 'vue-router'
 import {createRouter, createWebHistory} from 'vue-router'
 import {PostDetail, PostList, UserList} from "@/components";
 import HomePage from '@/views/HomePage.vue';
+import CategoryPage from '@/views/CategoryPage.vue';
 import AdminLayout from '@/views/admin/AdminLayout.vue';
 import AdminPageList from '@/views/admin/PageList.vue';
 import AdminUserList from '@/views/admin/UserList.vue';
@@ -10,7 +11,13 @@ import UserProfile from "@/views/user/UserProfile.vue";
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
+        name: 'home',
         component: HomePage
+    },
+    {
+        path: '/c/:category_link',
+        name: 'category',
+        component: CategoryPage
     },
     {
         path: '/users',
