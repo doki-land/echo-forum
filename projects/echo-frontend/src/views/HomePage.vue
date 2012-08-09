@@ -34,6 +34,7 @@ import { sections, categories } from '@/mock'
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    margin-top: 4rem;
 
     .sections {
       margin-bottom: 2rem;

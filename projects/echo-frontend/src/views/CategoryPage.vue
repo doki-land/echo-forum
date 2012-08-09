@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="post in posts" :key="post.id">
+            <tr v-for="post in displayedPosts" :key="post.id">
               <td class="post-title">
                 <h3>{{ post.title }}</h3>
                 <p class="post-summary">{{ post.summary }}</p>
@@ -38,6 +38,31 @@
             </tr>
             </tbody>
           </table>
+          <div class="pagination">
+            <div class="pagination-info">
+              <span>共 {{ totalPosts }} 条</span>
+              <select v-model="pageSize" @change="handlePageSizeChange">
+                <option v-for="size in pageSizes" :key="size" :value="size">{{ size }} 条/页</option>
+              </select>
+            </div>
+            <div class="pagination-controls">
+              <button 
+                :disabled="currentPage === 1" 
+                @click="currentPage--"
+                class="page-btn"
+              >
+                上一页
+              </button>
+              <span class="page-info">{{ currentPage }} / {{ totalPages }}</span>
+              <button 
+                :disabled="currentPage === totalPages" 
+                @click="currentPage++"
+                class="page-btn"
+              >
+                下一页
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,9 +71,14 @@
 
 <script setup lang="ts">
 import CategorySidebar from '@/components/CategorySidebar.vue'
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import type {Post} from '@/types'
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
+
+// 分页相关状态
+const currentPage = ref(1)
+const pageSize = ref(10)
+const pageSizes = [10, 20, 50, 100]
 
 // 模拟数据，后续需要替换为真实的API调用
 const posts = ref<Post[]>([
@@ -71,8 +101,40 @@ const posts = ref<Post[]>([
     ],
     commentCount: 10,
     createdAt: '2024-01-20 12:00:00'
-  }
+  },
+  // 添加更多模拟数据以测试分页
+  ...Array.from({ length: 19 }, (_, index) => ({
+    id: index + 2,
+    title: `示例帖子标题 ${index + 2}`,
+    summary: `这是第 ${index + 2} 个示例帖子的摘要内容...`,
+    tags: ['标签1', '标签2'],
+    participants: [
+      {
+        id: 1,
+        username: 'user1',
+        avatar: ''
+      },
+    ],
+    commentCount: Math.floor(Math.random() * 100),
+    createdAt: '2024-01-20 12:00:00'
+  }))
 ])
+
+// 计算总页数
+const totalPosts = computed(() => posts.value.length)
+const totalPages = computed(() => Math.ceil(totalPosts.value / pageSize.value))
+
+// 当前页显示的帖子
+const displayedPosts = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  const end = start + pageSize.value
+  return posts.value.slice(start, end)
+})
+
+// 处理每页显示数量变化
+const handlePageSizeChange = () => {
+  currentPage.value = 1
+}
 </script>
 
 <style lang="scss" scoped>
@@ -100,6 +162,57 @@ const posts = ref<Post[]>([
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         overflow: hidden;
+
+        .pagination {
+          padding: 1rem;
+          border-top: 1px solid #eee;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .pagination-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            select {
+              padding: 0.25rem 0.5rem;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              background-color: #fff;
+              font-size: 0.875rem;
+            }
+          }
+
+          .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .page-btn {
+              padding: 0.5rem 1rem;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              background-color: #fff;
+              cursor: pointer;
+              font-size: 0.875rem;
+
+              &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+              }
+
+              &:not(:disabled):hover {
+                background-color: #f5f7fa;
+              }
+            }
+
+            .page-info {
+              font-size: 0.875rem;
+              color: #666;
+            }
+          }
+        }
 
         table {
           width: 100%;

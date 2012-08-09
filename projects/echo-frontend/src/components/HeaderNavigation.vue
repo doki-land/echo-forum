@@ -35,7 +35,12 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0.75rem 0;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
   .nav-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -151,5 +156,5 @@
       }
     }
   }
-}
+
 </style>
