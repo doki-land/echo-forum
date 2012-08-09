@@ -23,6 +23,7 @@ export interface Category {
   description: string
   tags: string[]
   hotPosts: Post[]
+  color: string
 }
 
 export const navItems: NavItem[] = [
@@ -51,6 +52,7 @@ export const categories: Category[] = [
     title: '学习交流',
     description: '分享学习经验，讨论学习方法',
     tags: ['学习', '经验分享', '讨论'],
+    color: '#4CAF50',
     hotPosts: [
       { id: 1, title: '如何提高学习效率', createdAt: '2023-05-01', views: 1200 },
       { id: 2, title: '学习方法分享', createdAt: '2023-05-02', views: 800 }
@@ -61,6 +63,7 @@ export const categories: Category[] = [
     title: '技术讨论',
     description: '交流技术心得，分享编程经验',
     tags: ['编程', '技术', '开发'],
+    color: '#2196F3',
     hotPosts: [
       { id: 3, title: 'Vue3 最佳实践', createdAt: '2023-05-03', views: 1500 },
       { id: 4, title: 'TypeScript 入门指南', createdAt: '2023-05-04', views: 1000 }

@@ -1,5 +1,11 @@
 <template>
   <div class="category-sidebar">
+    <div class="all-categories">
+      <router-link to="/c" class="all-categories-btn">
+        <img src="@/assets/icons/AllCategory.svg" alt="All Categories" class="icon" />
+        <span>全部分类</span>
+      </router-link>
+    </div>
     <div class="search-section">
       <div class="search-box">
         <input type="text" placeholder="搜索分类内容..." class="search-input" v-model="searchQuery">
@@ -63,6 +69,31 @@ const selectedTags = ref<string[]>([])
 
 <style lang="scss" scoped>
 .category-sidebar {
+  .all-categories {
+    margin-bottom: 1.5rem;
+
+    .all-categories-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: #f5f7fa;
+      border-radius: 8px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #e6e8eb;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
   background-color: #fff;
   border-radius: 8px;
   padding: 1.5rem;

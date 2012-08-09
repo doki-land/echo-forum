@@ -7,6 +7,7 @@ import AdminLayout from '@/views/admin/AdminLayout.vue';
 import AdminPageList from '@/views/admin/PageList.vue';
 import AdminUserList from '@/views/admin/UserList.vue';
 import UserProfile from "@/views/user/UserProfile.vue";
+import CategoryAll from '@/views/CategoryAll.vue';
 
 const routes: RouteRecordRaw[] = [
     {
@@ -15,8 +16,11 @@ const routes: RouteRecordRaw[] = [
         component: HomePage
     },
     {
+        path: '/c',
+        component: CategoryAll
+    },
+    {
         path: '/c/:category_link',
-        name: 'category',
         component: CategoryPage
     },
     {
