@@ -46,16 +46,16 @@
               </select>
             </div>
             <div class="pagination-controls">
-              <button 
-                :disabled="currentPage === 1" 
+              <button
+                :disabled="currentPage === 1"
                 @click="currentPage--"
                 class="page-btn"
               >
                 上一页
               </button>
               <span class="page-info">{{ currentPage }} / {{ totalPages }}</span>
-              <button 
-                :disabled="currentPage === totalPages" 
+              <button
+                :disabled="currentPage === totalPages"
                 @click="currentPage++"
                 class="page-btn"
               >
@@ -71,7 +71,7 @@
 
 <script setup lang="ts">
 import CategorySidebar from '@/components/CategorySidebar.vue'
-import {ref, computed} from 'vue'
+import {computed, ref} from 'vue'
 import type {Post} from '@/types'
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
 
@@ -103,7 +103,7 @@ const posts = ref<Post[]>([
     createdAt: '2024-01-20 12:00:00'
   },
   // 添加更多模拟数据以测试分页
-  ...Array.from({ length: 19 }, (_, index) => ({
+  ...Array.from({length: 19}, (_, index) => ({
     id: index + 2,
     title: `示例帖子标题 ${index + 2}`,
     summary: `这是第 ${index + 2} 个示例帖子的摘要内容...`,
@@ -141,21 +141,25 @@ const handlePageSizeChange = () => {
 .category-page {
   min-height: 100vh;
   background-color: #f5f7fa;
-  padding: 2rem;
+  padding-top: 4rem;
 
   .category-layout {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     gap: 2rem;
+    position: relative;
 
     .sidebar {
       width: 280px;
-      flex-shrink: 0;
+      position: sticky;
+      top: 4rem;
+      height: fit-content;
     }
 
     .main-content {
       flex: 1;
+      min-width: 0;
 
       .post-table {
         background-color: #fff;
@@ -174,13 +178,27 @@ const handlePageSizeChange = () => {
             display: flex;
             align-items: center;
             gap: 1rem;
+            color: #666;
 
             select {
-              padding: 0.25rem 0.5rem;
+              padding: 0.5rem;
               border: 1px solid #ddd;
               border-radius: 4px;
               background-color: #fff;
               font-size: 0.875rem;
+              color: #333;
+              cursor: pointer;
+              transition: border-color 0.2s;
+
+              &:hover {
+                border-color: #1a73e8;
+              }
+
+              &:focus {
+                outline: none;
+                border-color: #1a73e8;
+                box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+              }
             }
           }
 
@@ -189,27 +207,30 @@ const handlePageSizeChange = () => {
             align-items: center;
             gap: 1rem;
 
+            .page-info {
+              color: #666;
+              font-size: 0.875rem;
+            }
+
             .page-btn {
               padding: 0.5rem 1rem;
               border: 1px solid #ddd;
               border-radius: 4px;
               background-color: #fff;
-              cursor: pointer;
+              color: #333;
               font-size: 0.875rem;
+              cursor: pointer;
+              transition: all 0.2s;
+
+              &:hover:not(:disabled) {
+                border-color: #1a73e8;
+                color: #1a73e8;
+              }
 
               &:disabled {
                 opacity: 0.5;
                 cursor: not-allowed;
               }
-
-              &:not(:disabled):hover {
-                background-color: #f5f7fa;
-              }
-            }
-
-            .page-info {
-              font-size: 0.875rem;
-              color: #666;
             }
           }
         }
@@ -225,25 +246,27 @@ const handlePageSizeChange = () => {
           }
 
           th {
+            font-weight: 600;
+            color: #666;
             background-color: #f8f9fa;
-            font-weight: 500;
-            color: #333;
           }
 
           td {
-            vertical-align: top;
+            color: #333;
 
             &.post-title {
               h3 {
                 margin: 0 0 0.5rem;
                 font-size: 1rem;
-                color: #333;
+                font-weight: 600;
+                color: #1a73e8;
               }
 
               .post-summary {
-                margin: 0 0 0.5rem;
+                margin: 0 0 0.75rem;
                 font-size: 0.875rem;
                 color: #666;
+                line-height: 1.4;
               }
 
               .post-tags {
@@ -251,9 +274,9 @@ const handlePageSizeChange = () => {
                 gap: 0.5rem;
 
                 .tag {
-                  padding: 0.25rem 0.75rem;
+                  padding: 0.25rem 0.5rem;
                   background-color: #f0f2f5;
-                  border-radius: 16px;
+                  border-radius: 4px;
                   font-size: 0.75rem;
                   color: #666;
                 }
@@ -273,11 +296,11 @@ const handlePageSizeChange = () => {
                   align-items: center;
                   justify-content: center;
                   font-size: 0.75rem;
-                  background-color: #f0f2f5;
-                  color: #666;
+                  background-color: #e0e0e0;
+                  color: #fff;
                 }
 
-                img.avatar {
+                .avatar {
                   object-fit: cover;
                 }
               }

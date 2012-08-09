@@ -1,16 +1,15 @@
 <template>
   <div class="category-all">
-    <div class="category-grid">
-      <div v-for="category in categories" :key="category.title" class="category-item" :style="{ borderColor: category.color }">
-        <div class="category-header" :style="{ backgroundColor: category.color }">
-          <span class="category-logo">{{ category.logo }}</span>
-          <h3 class="category-title">{{ category.title }}</h3>
-        </div>
-        <p class="category-description">{{ category.description }}</p>
-        <div class="category-tags">
-          <span v-for="tag in category.tags" :key="tag" class="tag">
-            {{ tag }}
-          </span>
+    <HeaderNavigation />
+    <div class="content">
+      <div class="main-container">
+        <CategorySidebar class="sidebar" />
+        <div class="category-grid">
+          <CategoryCell
+            v-for="category in categories"
+            :key="category.title"
+            :category="category"
+          />
         </div>
       </div>
     </div>
@@ -19,70 +18,36 @@
 
 <script setup lang="ts">
 import { categories } from '@/mock'
+import HeaderNavigation from '@/components/HeaderNavigation.vue'
+import CategoryCell from '@/components/CategoryCell.vue'
+import CategorySidebar from '@/components/CategorySidebar.vue'
 </script>
 
 <style lang="scss" scoped>
 .category-all {
-  padding: 2rem;
+  min-height: 100vh;
   background-color: #f5f7fa;
 
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  .content {
+    padding: 2rem;
+    margin-top: 4rem;
 
-  .category-item {
-    background-color: #fff;
-    border-radius: 8px;
-    border: 2px solid;
-    overflow: hidden;
-    transition: transform 0.2s;
+    .main-container {
+      display: flex;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
 
-    &:hover {
-      transform: translateY(-4px);
-    }
-  }
+      .sidebar {
+        flex-shrink: 0;
+      }
 
-  .category-header {
-    padding: 1rem;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .category-logo {
-    font-size: 1.5rem;
-  }
-
-  .category-title {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-
-  .category-description {
-    padding: 1rem;
-    margin: 0;
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  .category-tags {
-    padding: 0 1rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-
-    .tag {
-      padding: 0.25rem 0.75rem;
-      background-color: #f5f7fa;
-      border-radius: 1rem;
-      font-size: 0.8rem;
-      color: #666;
+      .category-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
     }
   }
 }
