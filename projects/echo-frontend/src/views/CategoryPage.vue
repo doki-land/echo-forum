@@ -14,7 +14,7 @@
               <th>回复数</th>
               <th>浏览量</th>
               <th>参与者</th>
-              <th>最后活动</th>
+              <th>最后活动时间</th>
             </tr>
             </thead>
             <tbody>

@@ -1,6 +1,6 @@
 import type {RouteRecordRaw} from 'vue-router'
 import {createRouter, createWebHistory} from 'vue-router'
-import {PostDetail, PostList, UserList} from "@/components";
+import {PostDetail, PostTable, UserList} from "@/components";
 import HomePage from '@/views/HomePage.vue';
 import CategoryPage from '@/views/CategoryPage.vue';
 import AdminLayout from '@/views/admin/AdminLayout.vue';
@@ -31,7 +31,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/posts',
         name: 'PostList',
-        component: PostList
+        component: PostTable
     },
     {
         path: '/@:user_id',

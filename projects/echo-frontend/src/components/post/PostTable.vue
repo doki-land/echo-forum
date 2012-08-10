@@ -13,13 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Post } from '../../index'
+import type {Post} from '../../index'
 
 defineProps<{
   posts: Post[]
 }>()
 </script>
-
 
 
 <style lang="scss" scoped>
