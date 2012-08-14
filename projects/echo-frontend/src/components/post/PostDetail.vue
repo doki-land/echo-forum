@@ -3,7 +3,7 @@
     <h2>{{ post.title }}</h2>
     <div class="post-content">{{ post.content }}</div>
     <div class="post-meta">
-      <img :src="post.author.avatar" alt="avatar" class="author-avatar" />
+      <img :src="post.author.avatar" alt="avatar" class="author-avatar"/>
       <span class="author-name">{{ post.author.username }}</span>
       <span class="post-time">{{ post.createdAt.toLocaleString() }}</span>
       <span class="post-likes">点赞: {{ post.likes }}</span>
@@ -12,13 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import type { Post } from '../../index'
+
+
+import {Post} from "@/types";
 
 defineProps<{
   post: Post
 }>()
 </script>
-
 
 
 <style lang="scss" scoped>

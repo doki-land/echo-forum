@@ -3,65 +3,33 @@
     <header-navigation/>
     <div class="category-layout">
       <div class="sidebar">
-        <CategorySidebar/>
+        <category-sidebar/>
       </div>
       <div class="main-content">
-        <div class="post-table">
-          <table>
-            <thead>
-            <tr>
-              <th>标题</th>
-              <th>回复数</th>
-              <th>浏览量</th>
-              <th>参与者</th>
-              <th>最后活动时间</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="post in displayedPosts" :key="post.id">
-              <td class="post-title">
-                <h3>{{ post.title }}</h3>
-                <p class="post-summary">{{ post.summary }}</p>
-                <div class="post-tags">
-                  <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
-                </div>
-              </td>
-              <td>{{ post.commentCount }}</td>
-              <td>{{ post.views || 0 }}</td>
-              <td class="participants">
-                <div v-for="participant in post.participants" :key="participant.id" class="participant">
-                  <img v-if="participant.avatar" :src="participant.avatar" :alt="participant.username" class="avatar">
-                  <span v-else class="avatar-placeholder">{{ participant.username[0].toUpperCase() }}</span>
-                </div>
-              </td>
-              <td>{{ post.createdAt }}</td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="pagination">
-            <div class="pagination-info">
-              <span>共 {{ totalPosts }} 条</span>
-              <select v-model="pageSize" @change="handlePageSizeChange">
-                <option v-for="size in pageSizes" :key="size" :value="size">{{ size }} 条/页</option>
-              </select>
-            </div>
-            <div class="pagination-controls">
-              <button
-                :disabled="currentPage === 1"
-                @click="currentPage--"
-                class="page-btn"
-              >
-                上一页
-              </button>
-              <span class="page-info">{{ currentPage }} / {{ totalPages }}</span>
-              <button
-                :disabled="currentPage === totalPages"
-                @click="currentPage++"
-                class="page-btn"
-              >
-                下一页
-              </button>
-            </div>
+        <post-list :posts="displayedPosts"/>
+        <div class="pagination">
+          <div class="pagination-info">
+            <span>共 {{ totalPosts }} 条</span>
+            <select v-model="pageSize" @change="handlePageSizeChange">
+              <option v-for="size in pageSizes" :key="size" :value="size">{{ size }} 条/页</option>
+            </select>
+          </div>
+          <div class="pagination-controls">
+            <button
+              :disabled="currentPage === 1"
+              @click="currentPage--"
+              class="page-btn"
+            >
+              上一页
+            </button>
+            <span class="page-info">{{ currentPage }} / {{ totalPages }}</span>
+            <button
+              :disabled="currentPage === totalPages"
+              @click="currentPage++"
+              class="page-btn"
+            >
+              下一页
+            </button>
           </div>
         </div>
       </div>
@@ -74,6 +42,7 @@ import CategorySidebar from '@/components/CategorySidebar.vue'
 import {computed, ref} from 'vue'
 import type {Post} from '@/types'
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
+import {PostList} from "@/components";
 
 // 分页相关状态
 const currentPage = ref(1)

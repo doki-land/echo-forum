@@ -5,7 +5,7 @@
     </div>
     <div class="user-content">
       <h2 class="section-title">用户动态</h2>
-      <post-table :posts="userPosts" />
+      <post-list :posts="userPosts" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import type { User, Post } from '@/types'
-import { UserInfo, PostTable } from '@/components'
+import { UserInfo, PostList } from '@/components'
 
 const route = useRoute()
 const userId = route.params.userId

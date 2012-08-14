@@ -14,15 +14,15 @@
     <div class="post-footer">
       <div class="participants">
         <div
-            v-for="participant in post.participants"
-            :key="participant.id"
-            class="participant"
+          v-for="participant in post.participants"
+          :key="participant.id"
+          class="participant"
         >
           <img
-              v-if="participant.avatar"
-              :src="participant.avatar"
-              :alt="participant.username"
-              class="avatar"
+            v-if="participant.avatar"
+            :src="participant.avatar"
+            :alt="participant.username"
+            class="avatar"
           >
           <span v-else class="avatar-placeholder">
             {{ participant.username[0].toUpperCase() }}
