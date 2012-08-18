@@ -25,7 +25,7 @@ create table category_info
         constraint category_info_pk
             primary key,
     link        text                                               not null
-        constraint category_info_pk_2
+        constraint category_info_k2
             unique,
     name        text                     default ''::text          not null,
     description text                     default ''::text          not null,

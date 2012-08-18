@@ -1,5 +1,5 @@
 pub use self::{
-    category_model::{CategoryId, CategoryInfo},
+    category_model::{CategoryId, CategoryInfo, CategoryCreate, CategoryEdit, CategoryQuery},
     user_model::{UserCreate, UserId},
 };
 use chrono::{DateTime, Local};
