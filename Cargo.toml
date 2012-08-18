@@ -5,6 +5,7 @@ default-members = [
     "projects/echo-backend",
 ]
 exclude = [
+    "projects/echo-api",
     "projects/echo-frontend",
     "projects/.DS_Store",
 ]

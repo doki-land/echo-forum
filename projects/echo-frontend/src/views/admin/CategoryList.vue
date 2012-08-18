@@ -83,76 +83,86 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { categoryApi, CategoryInfo, CategoryCreate, CategoryEdit } from '../../components/api/api_category'
 
-interface Category {
-  id: number
-  name: string
-  color: string
-  description: string
-}
-
-// 模拟数据，后续需要替换为真实的API调用
-const categories = ref<Category[]>([
-  {
-    id: 1,
-    name: '技术讨论',
-    color: '#1a73e8',
-    description: '讨论各种技术相关话题'
-  },
-  {
-    id: 2,
-    name: '生活分享',
-    color: '#34a853',
-    description: '分享生活中的趣事和感悟'
-  }
+const categories = ref<CategoryInfo[]>([])
 ])
 
+// 加载分类列表
+const loadCategories = async () => {
+  try {
+    categories.value = await categoryApi.query()
+  } catch (error) {
+    console.error('加载分类列表失败:', error)
+  }
+}
+
+onMounted(() => {
+  loadCategories()
+})
+
 // 表单数据
-const formData = ref<Omit<Category, 'id'>>({ name: '', color: '#1a73e8', description: '' })
+const formData = ref<CategoryCreate>({ name: '', color: '#1a73e8', description: '' })
 
 // 对话框状态
 const showAddDialog = ref(false)
 const showEditDialog = ref(false)
 const showDeleteDialog = ref(false)
-const selectedCategory = ref<Category | null>(null)
+const selectedCategory = ref<CategoryInfo | null>(null)
 
 // 编辑分类
-const editCategory = (category: Category) => {
+const editCategory = (category: CategoryInfo) => {
   selectedCategory.value = category
-  formData.value = { ...category }
+  formData.value = {
+    name: category.name,
+    color: category.color,
+    description: category.description
+  }
   showEditDialog.value = true
 }
 
 // 确认删除
-const confirmDelete = (category: Category) => {
+const confirmDelete = (category: CategoryInfo) => {
   selectedCategory.value = category
   showDeleteDialog.value = true
 }
 
 // 处理删除
-const handleDelete = () => {
+const handleDelete = async () => {
   if (selectedCategory.value) {
-    categories.value = categories.value.filter(c => c.id !== selectedCategory.value?.id)
-    showDeleteDialog.value = false
-    selectedCategory.value = null
+    try {
+      await categoryApi.delete(selectedCategory.value.category_id)
+      await loadCategories()
+      showDeleteDialog.value = false
+      selectedCategory.value = null
+    } catch (error) {
+      console.error('删除分类失败:', error)
+    }
   }
 }
 
 // 处理表单提交
-const handleSubmit = () => {
-  if (showEditDialog.value && selectedCategory.value) {
-    // 编辑现有分类
-    const index = categories.value.findIndex(c => c.id === selectedCategory.value?.id)
-    if (index !== -1) {
-      categories.value[index] = { ...selectedCategory.value, ...formData.value }
+const handleSubmit = async () => {
+  try {
+    if (showEditDialog.value && selectedCategory.value) {
+      // 编辑现有分类
+      const editData: CategoryEdit = {
+        category_id: selectedCategory.value.category_id,
+        name: formData.value.name,
+        description: formData.value.description,
+        color: formData.value.color
+      }
+      await categoryApi.update(editData)
+    } else {
+      // 新建分类
+      await categoryApi.create(formData.value)
     }
-  } else {
-    // 新建分类
-    const newId = Math.max(...categories.value.map(c => c.id)) + 1
-    categories.value.push({ id: newId, ...formData.value })
+    await loadCategories()
+    closeDialog()
+  } catch (error) {
+    console.error('保存分类失败:', error)
   }
-  closeDialog()
 }
 
 // 关闭对话框
