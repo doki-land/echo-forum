@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Category } from '../mock'
+import type {Category} from '../mock'
 
 defineProps<{
   category: Category
