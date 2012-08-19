@@ -49,10 +49,10 @@ impl CategoryCreate {
         let category_id = CategoryId::now();
         let _ = sqlx::query("SELECT category_create($1,$2,$3,$4,$5,$6)")
             .bind(category_id)
-            .bind(self.link)
-            .bind(self.name)
-            .bind(self.description)
-            .bind(self.color)
+            .bind(self.link.unwrap_or(category_id.to_string()))
+            .bind(self.name.unwrap_or(category_id.to_string()))
+            .bind(self.description.unwrap_or_default())
+            .bind(self.color.unwrap_or("#999999".to_string()))
             .bind(create_user)
             .execute(&api.pg)
             .await?;

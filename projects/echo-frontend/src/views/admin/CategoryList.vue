@@ -14,15 +14,17 @@
         <tr>
           <th>ID</th>
           <th>名称</th>
+          <th>链接</th>
           <th>颜色</th>
           <th>描述</th>
           <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="category in categories" :key="category.id">
+        <tr v-for="category in categories" :key="category.category_id">
           <td>{{ category.category_id }}</td>
           <td>{{ category.name }}</td>
+          <td>{{ category.link }}</td>
           <td>
             <div class="color-preview" :style="{ backgroundColor: category.color }"></div>
             {{ category.color }}
@@ -43,30 +45,20 @@
       </table>
     </div>
 
-    <!-- 新建/编辑分类对话框 -->
-    <div class="dialog" v-if="showAddDialog || showEditDialog">
-      <div class="dialog-content">
-        <h3>{{ showEditDialog ? '编辑分类' : '新建分类' }}</h3>
-        <form @submit.prevent="handleSubmit">
-          <div class="form-group">
-            <label>名称</label>
-            <input type="text" v-model="formData.name" required>
-          </div>
-          <div class="form-group">
-            <label>颜色</label>
-            <input type="color" v-model="formData.color" required>
-          </div>
-          <div class="form-group">
-            <label>描述</label>
-            <textarea v-model="formData.description" rows="3"></textarea>
-          </div>
-          <div class="dialog-actions">
-            <button type="button" class="cancel-btn" @click="closeDialog">取消</button>
-            <button type="submit" class="submit-btn">确定</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <!-- 新建分类对话框 -->
+    <category-editor
+      v-if="showAddDialog"
+      @submit="handleSubmit"
+      @cancel="closeDialog"
+    />
+
+    <!-- 编辑分类对话框 -->
+    <category-editor
+      v-if="showEditDialog"
+      :category="selectedCategory"
+      @submit="handleSubmit"
+      @cancel="closeDialog"
+    />
 
     <!-- 删除确认对话框 -->
     <div class="dialog" v-if="showDeleteDialog">
@@ -85,7 +77,8 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
 import {CategoryApi} from '@doki-land/echo-api'
-import {CategoryCreate, CategoryEdit, CategoryInfo} from '@doki-land/echo-api/models'
+import {CategoryCreate, type CategoryEdit, CategoryInfo} from '@doki-land/echo-api/models'
+import CategoryEditor from '@/components/CategoryEditor.vue'
 
 const categoryApi = new CategoryApi()
 const categories = ref<CategoryInfo[]>([])
@@ -103,13 +96,6 @@ onMounted(() => {
   loadCategories()
 })
 
-// 表单数据
-const formData = ref<CategoryCreate>({
-  name: '',
-  color: '#1a73e8',
-  description: ''
-})
-
 // 对话框状态
 const showAddDialog = ref(false)
 const showEditDialog = ref(false)
@@ -119,11 +105,6 @@ const selectedCategory = ref<CategoryInfo | null>(null)
 // 编辑分类
 const editCategory = (category: CategoryInfo) => {
   selectedCategory.value = category
-  formData.value = {
-    name: category.name,
-    color: category.color,
-    description: category.description
-  }
   showEditDialog.value = true
 }
 
@@ -148,20 +129,21 @@ const handleDelete = async () => {
 }
 
 // 处理表单提交
-const handleSubmit = async () => {
+const handleSubmit = async (formData: CategoryCreate) => {
   try {
     if (showEditDialog.value && selectedCategory.value) {
       // 编辑现有分类
       const editData: CategoryEdit = {
         category_id: selectedCategory.value.category_id,
-        name: formData.value.name,
-        description: formData.value.description,
-        color: formData.value.color
+        name: formData.name,
+        link: formData.link,
+        description: formData.description,
+        color: formData.color
       }
       await categoryApi.categoryEditPatch(editData)
     } else {
       // 新建分类
-      await categoryApi.categoryCreatePut(formData.value)
+      await categoryApi.categoryCreatePut(formData)
     }
     await loadCategories()
     closeDialog()
@@ -175,11 +157,6 @@ const closeDialog = () => {
   showAddDialog.value = false
   showEditDialog.value = false
   selectedCategory.value = null
-  formData.value = {
-    name: '',
-    color: '#1a73e8',
-    description: ''
-  }
 }
 </script>
 
