@@ -1,0 +1,3 @@
+packages:
+  - 'projects/echo-api'
+  - 'projects/echo-frontend'

@@ -11,34 +11,34 @@
     <div class="table-container">
       <table>
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>名称</th>
-            <th>颜色</th>
-            <th>描述</th>
-            <th>操作</th>
-          </tr>
+        <tr>
+          <th>ID</th>
+          <th>名称</th>
+          <th>颜色</th>
+          <th>描述</th>
+          <th>操作</th>
+        </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id">
-            <td>{{ category.id }}</td>
-            <td>{{ category.name }}</td>
-            <td>
-              <div class="color-preview" :style="{ backgroundColor: category.color }"></div>
-              {{ category.color }}
-            </td>
-            <td>{{ category.description }}</td>
-            <td>
-              <button class="action-btn edit" @click="editCategory(category)">
-                <i class="fas fa-edit"></i>
-                编辑
-              </button>
-              <button class="action-btn delete" @click="confirmDelete(category)">
-                <i class="fas fa-trash"></i>
-                删除
-              </button>
-            </td>
-          </tr>
+        <tr v-for="category in categories" :key="category.id">
+          <td>{{ category.category_id }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <div class="color-preview" :style="{ backgroundColor: category.color }"></div>
+            {{ category.color }}
+          </td>
+          <td>{{ category.description }}</td>
+          <td>
+            <button class="action-btn edit" @click="editCategory(category)">
+              <i class="fas fa-edit"></i>
+              编辑
+            </button>
+            <button class="action-btn delete" @click="confirmDelete(category)">
+              <i class="fas fa-trash"></i>
+              删除
+            </button>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -83,16 +83,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { categoryApi, CategoryInfo, CategoryCreate, CategoryEdit } from '../../components/api/api_category'
+import {onMounted, ref} from 'vue'
+import {CategoryApi} from '@doki-land/echo-api'
+import {CategoryCreate, CategoryEdit, CategoryInfo} from '@doki-land/echo-api/models'
 
+const categoryApi = new CategoryApi()
 const categories = ref<CategoryInfo[]>([])
-])
 
 // 加载分类列表
 const loadCategories = async () => {
   try {
-    categories.value = await categoryApi.query()
+    categories.value = (await categoryApi.categoryQueryPost({user_id: '1'})).data
   } catch (error) {
     console.error('加载分类列表失败:', error)
   }
@@ -103,7 +104,11 @@ onMounted(() => {
 })
 
 // 表单数据
-const formData = ref<CategoryCreate>({ name: '', color: '#1a73e8', description: '' })
+const formData = ref<CategoryCreate>({
+  name: '',
+  color: '#1a73e8',
+  description: ''
+})
 
 // 对话框状态
 const showAddDialog = ref(false)
@@ -132,7 +137,7 @@ const confirmDelete = (category: CategoryInfo) => {
 const handleDelete = async () => {
   if (selectedCategory.value) {
     try {
-      await categoryApi.delete(selectedCategory.value.category_id)
+      await categoryApi.categoryDeleteDelete(selectedCategory.value.category_id)
       await loadCategories()
       showDeleteDialog.value = false
       selectedCategory.value = null
@@ -153,10 +158,10 @@ const handleSubmit = async () => {
         description: formData.value.description,
         color: formData.value.color
       }
-      await categoryApi.update(editData)
+      await categoryApi.categoryEditPatch(editData)
     } else {
       // 新建分类
-      await categoryApi.create(formData.value)
+      await categoryApi.categoryCreatePut(formData.value)
     }
     await loadCategories()
     closeDialog()
@@ -170,7 +175,11 @@ const closeDialog = () => {
   showAddDialog.value = false
   showEditDialog.value = false
   selectedCategory.value = null
-  formData.value = { name: '', color: '#1a73e8', description: '' }
+  formData.value = {
+    name: '',
+    color: '#1a73e8',
+    description: ''
+  }
 }
 </script>
 

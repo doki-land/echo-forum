@@ -1,8 +1,8 @@
 use clap::Parser;
+use echo_backend::{AppError, AppState};
 use poem::{listener::TcpListener, middleware::Cors, EndpointExt, Route};
 use poem_openapi::OpenApiService;
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres};
-use echo_backend::{AppError, AppState};
 
 #[derive(Parser)]
 pub struct App {
@@ -35,13 +35,7 @@ impl App {
         let app = Route::new()
             .nest("/echo.json", json)
             .nest("/", api_service)
-            .with(
-                Cors::new().allow_origin("*")
-                           .allow_credentials(true)
-                          .max_age(3600)
-                           .allow_methods(vec!["GET", "POST", "OPTIONS"])
-                          .allow_headers(vec!["Origin", "Methods", "Content-Type"])
-            )
+            .with(Cors::new())
             // .with(RequestTracing {})
             ;
         poem::Server::new(TcpListener::bind("0.0.0.0:8080")).run(app).await?;

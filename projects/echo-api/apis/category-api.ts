@@ -24,13 +24,11 @@ import { CategoryCreate } from '../models';
 import { CategoryEdit } from '../models';
 // @ts-ignore
 import { CategoryInfo } from '../models';
-// @ts-ignore
-import { UserCreate } from '../models';
 /**
- * AuthApi - axios parameter creator
+ * CategoryApi - axios parameter creator
  * @export
  */
-export const AuthApiAxiosParamCreator = function (configuration?: Configuration) {
+export const CategoryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -39,14 +37,14 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePost: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
+        categoryCreatePut: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/category/create`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -74,14 +72,14 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePost_1: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
+        categoryCreatePut_1: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/category/create`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -312,84 +310,14 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreatePut: async (userCreate?: UserCreate, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/user/create`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json; charset=utf-8';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof userCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(userCreate !== undefined ? userCreate : {}) : (userCreate || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreatePut_5: async (userCreate?: UserCreate, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/user/create`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json; charset=utf-8';
-
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof userCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(userCreate !== undefined ? userCreate : {}) : (userCreate || "");
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
 /**
- * AuthApi - functional programming interface
+ * CategoryApi - functional programming interface
  * @export
  */
-export const AuthApiFp = function(configuration?: Configuration) {
+export const CategoryApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
@@ -398,8 +326,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryCreatePost(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryCreatePost(categoryCreate, options);
+        async categoryCreatePut(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryCreatePut(categoryCreate, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -412,8 +340,8 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryCreatePost_1(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryCreatePost_1(categoryCreate, options);
+        async categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryCreatePut_1(categoryCreate, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -427,7 +355,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryDeleteDelete(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryDeleteDelete(body, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryDeleteDelete(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -441,7 +369,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryDeleteDelete_2(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryDeleteDelete_2(body, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryDeleteDelete_2(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -455,7 +383,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryEditPatch(categoryEdit?: CategoryEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryEditPatch(categoryEdit, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryEditPatch(categoryEdit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -469,7 +397,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryEditPatch_3(categoryEdit, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryEditPatch_3(categoryEdit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -483,7 +411,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryQueryPost(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryInfo>>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryQueryPost(body, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryQueryPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -497,35 +425,7 @@ export const AuthApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async categoryQueryPost_4(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryInfo>>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).categoryQueryPost_4(body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userCreatePut(userCreate?: UserCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).userCreatePut(userCreate, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userCreatePut_5(userCreate?: UserCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await AuthApiAxiosParamCreator(configuration).userCreatePut_5(userCreate, options);
+            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryQueryPost_4(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -535,10 +435,10 @@ export const AuthApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * AuthApi - factory interface
+ * CategoryApi - factory interface
  * @export
  */
-export const AuthApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const CategoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
@@ -547,8 +447,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePost(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
-            return AuthApiFp(configuration).categoryCreatePost(categoryCreate, options).then((request) => request(axios, basePath));
+        categoryCreatePut(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
+            return CategoryApiFp(configuration).categoryCreatePut(categoryCreate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -557,8 +457,8 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePost_1(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
-            return AuthApiFp(configuration).categoryCreatePost_1(categoryCreate, options).then((request) => request(axios, basePath));
+        categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
+            return CategoryApiFp(configuration).categoryCreatePut_1(categoryCreate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -568,7 +468,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryDeleteDelete(body?: string, options?: any): AxiosPromise<number> {
-            return AuthApiFp(configuration).categoryDeleteDelete(body, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryDeleteDelete(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -578,7 +478,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryDeleteDelete_2(body?: string, options?: any): AxiosPromise<number> {
-            return AuthApiFp(configuration).categoryDeleteDelete_2(body, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryDeleteDelete_2(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -588,7 +488,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryEditPatch(categoryEdit?: CategoryEdit, options?: any): AxiosPromise<number> {
-            return AuthApiFp(configuration).categoryEditPatch(categoryEdit, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryEditPatch(categoryEdit, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -598,7 +498,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any): AxiosPromise<number> {
-            return AuthApiFp(configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -608,7 +508,7 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryQueryPost(body?: object, options?: any): AxiosPromise<Array<CategoryInfo>> {
-            return AuthApiFp(configuration).categoryQueryPost(body, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryQueryPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -618,48 +518,28 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
          * @throws {RequiredError}
          */
         categoryQueryPost_4(body?: object, options?: any): AxiosPromise<Array<CategoryInfo>> {
-            return AuthApiFp(configuration).categoryQueryPost_4(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreatePut(userCreate?: UserCreate, options?: any): AxiosPromise<string> {
-            return AuthApiFp(configuration).userCreatePut(userCreate, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Register a new user
-         * @param {UserCreate} [userCreate] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userCreatePut_5(userCreate?: UserCreate, options?: any): AxiosPromise<string> {
-            return AuthApiFp(configuration).userCreatePut_5(userCreate, options).then((request) => request(axios, basePath));
+            return CategoryApiFp(configuration).categoryQueryPost_4(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * AuthApi - object-oriented interface
+ * CategoryApi - object-oriented interface
  * @export
- * @class AuthApi
+ * @class CategoryApi
  * @extends {BaseAPI}
  */
-export class AuthApi extends BaseAPI {
+export class CategoryApi extends BaseAPI {
     /**
      * 
      * @summary /category/create
      * @param {CategoryCreate} [categoryCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
-    public categoryCreatePost(categoryCreate?: CategoryCreate, options?: any) {
-        return AuthApiFp(this.configuration).categoryCreatePost(categoryCreate, options).then((request) => request(this.axios, this.basePath));
+    public categoryCreatePut(categoryCreate?: CategoryCreate, options?: any) {
+        return CategoryApiFp(this.configuration).categoryCreatePut(categoryCreate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -668,10 +548,10 @@ export class AuthApi extends BaseAPI {
      * @param {CategoryCreate} [categoryCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
-    public categoryCreatePost_1(categoryCreate?: CategoryCreate, options?: any) {
-        return AuthApiFp(this.configuration).categoryCreatePost_1(categoryCreate, options).then((request) => request(this.axios, this.basePath));
+    public categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any) {
+        return CategoryApiFp(this.configuration).categoryCreatePut_1(categoryCreate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -680,10 +560,10 @@ export class AuthApi extends BaseAPI {
      * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryDeleteDelete(body?: string, options?: any) {
-        return AuthApiFp(this.configuration).categoryDeleteDelete(body, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryDeleteDelete(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -692,10 +572,10 @@ export class AuthApi extends BaseAPI {
      * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryDeleteDelete_2(body?: string, options?: any) {
-        return AuthApiFp(this.configuration).categoryDeleteDelete_2(body, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryDeleteDelete_2(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -704,10 +584,10 @@ export class AuthApi extends BaseAPI {
      * @param {CategoryEdit} [categoryEdit] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryEditPatch(categoryEdit?: CategoryEdit, options?: any) {
-        return AuthApiFp(this.configuration).categoryEditPatch(categoryEdit, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryEditPatch(categoryEdit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -716,10 +596,10 @@ export class AuthApi extends BaseAPI {
      * @param {CategoryEdit} [categoryEdit] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any) {
-        return AuthApiFp(this.configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -728,10 +608,10 @@ export class AuthApi extends BaseAPI {
      * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryQueryPost(body?: object, options?: any) {
-        return AuthApiFp(this.configuration).categoryQueryPost(body, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryQueryPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -740,34 +620,10 @@ export class AuthApi extends BaseAPI {
      * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
+     * @memberof CategoryApi
      */
     public categoryQueryPost_4(body?: object, options?: any) {
-        return AuthApiFp(this.configuration).categoryQueryPost_4(body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Register a new user
-     * @param {UserCreate} [userCreate] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApi
-     */
-    public userCreatePut(userCreate?: UserCreate, options?: any) {
-        return AuthApiFp(this.configuration).userCreatePut(userCreate, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Register a new user
-     * @param {UserCreate} [userCreate] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApi
-     */
-    public userCreatePut_5(userCreate?: UserCreate, options?: any) {
-        return AuthApiFp(this.configuration).userCreatePut_5(userCreate, options).then((request) => request(this.axios, this.basePath));
+        return CategoryApiFp(this.configuration).categoryQueryPost_4(body, options).then((request) => request(this.axios, this.basePath));
     }
 
 }
