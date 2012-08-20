@@ -78,10 +78,12 @@
 import {onMounted, ref} from 'vue'
 import {CategoryApi} from '@doki-land/echo-api'
 import {CategoryCreate, type CategoryEdit, CategoryInfo} from '@doki-land/echo-api/models'
-import CategoryEditor from '@/components/CategoryEditor.vue'
+import {CategoryEditor} from "@/components";
+import {useFluent} from "fluent-vue";
 
 const categoryApi = new CategoryApi()
 const categories = ref<CategoryInfo[]>([])
+const {$t} = useFluent()
 
 // 加载分类列表
 const loadCategories = async () => {

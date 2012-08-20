@@ -31,6 +31,7 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
 import type {CategoryCreate, CategoryInfo} from '@doki-land/echo-api/models'
+import {useFluent} from "fluent-vue";
 
 const props = defineProps<{
   category?: CategoryInfo
@@ -40,11 +41,12 @@ const emit = defineEmits<{
   (e: 'submit', data: CategoryCreate): void
   (e: 'cancel'): void
 }>()
-
+const {$t} = useFluent()
 const isEdit = computed(() => !!props.category)
 
+
 // 生成随机颜色
-const generateRandomColor = () => {
+function generateRandomColor() {
   const hue = Math.floor(Math.random() * 360)
   const saturation = 60 + Math.floor(Math.random() * 20) // 60-80%
   const lightness = 45 + Math.floor(Math.random() * 10) // 45-55%
