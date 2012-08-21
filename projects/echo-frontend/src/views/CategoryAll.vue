@@ -1,15 +1,11 @@
 <template>
   <div class="category-all">
-    <HeaderNavigation />
+    <HeaderNavigation/>
     <div class="content">
       <div class="main-container">
-        <CategorySidebar class="sidebar" />
+        <CategorySidebar class="sidebar"/>
         <div class="category-grid">
-          <CategoryCell
-            v-for="category in categories"
-            :key="category.title"
-            :category="category"
-          />
+          <category-cell v-for="category in categories" :key="category.category_id" :category="category"/>
         </div>
       </div>
     </div>
@@ -18,10 +14,8 @@
 
 <script setup lang="ts">
 import HeaderNavigation from '@/components/HeaderNavigation.vue'
-import {CategoryCell} from '@/components'
-import {CategorySidebar} from '@/components'
-import {CategoryApi} from '@doki-land/echo-api'
-import {type CategoryInfo} from '@doki-land/echo-api/models'
+import {CategoryCell, CategorySidebar} from '@/components'
+import {type CategoryInfo} from '@client/models'
 import {onMounted, ref} from 'vue'
 import {useFluent} from 'fluent-vue'
 

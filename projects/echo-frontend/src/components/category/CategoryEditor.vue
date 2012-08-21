@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue'
-import type {CategoryCreate, CategoryInfo} from '@doki-land/echo-api/models'
+import type {CategoryCreate, CategoryInfo} from '@client/models'
 import {useFluent} from "fluent-vue";
 
 const props = defineProps<{

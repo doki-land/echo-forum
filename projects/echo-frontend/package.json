@@ -1,5 +1,5 @@
 {
-    "name": "echo-demo",
+    "name": "echo-frontend",
     "private": true,
     "version": "0.0.0",
     "type": "module",
@@ -10,7 +10,6 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@doki-land/echo-api": "workspace:*",
         "@fluent/bundle": "^0.18.0",
         "@vitejs/plugin-vue": "^5.2.3",
         "@vueuse/core": "^10.3.0",

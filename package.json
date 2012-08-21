@@ -1,11 +1,13 @@
 {
     "private": true,
-    "workspaces": ["projects/echo-api", "projects/echo-frontend"],
+    "workspaces": [
+        "projects/echo-frontend"
+    ],
     "scripts": {
         "doc": "cargo doc --no-deps --all-features",
         "test": "cargo test --release",
         "fmt": "cargo fmt --all",
-        "dev": "pnpm -F echo-demo dev --mode localhost",
+        "dev": "pnpm -F echo-frontend dev --mode localhost",
         "p": "git push && git push --tags --prune",
         "reset": "git reset Head~ --soft",
         "u": "cargo upgrade --workspace"

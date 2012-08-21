@@ -2,7 +2,7 @@
   <div class="category-cell" :style="{ borderColor: category.color }">
     <div class="category-header" :style="{ backgroundColor: category.color }">
       <span class="category-logo">{{ category.logo }}</span>
-      <h3 class="category-title">{{ category.title }}</h3>
+      <h3 class="category-title">{{ category.name }}</h3>
     </div>
     <p class="category-description">{{ category.description }}</p>
     <div class="category-tags">
@@ -14,10 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import type {Category} from '../mock'
+
+import {CategoryInfo} from "@client/models";
 
 defineProps<{
-  category: Category
+  category: CategoryInfo
 }>()
 </script>
 

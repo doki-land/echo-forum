@@ -76,8 +76,7 @@
 
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import {CategoryApi} from '@doki-land/echo-api'
-import {CategoryCreate, type CategoryEdit, CategoryInfo} from '@doki-land/echo-api/models'
+import {CategoryCreate, type CategoryEdit, CategoryInfo} from '@client/models'
 import {CategoryEditor} from "@/components";
 import {useFluent} from "fluent-vue";
 
