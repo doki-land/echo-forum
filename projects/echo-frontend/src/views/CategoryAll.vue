@@ -17,10 +17,30 @@
 </template>
 
 <script setup lang="ts">
-import { categories } from '@/mock'
 import HeaderNavigation from '@/components/HeaderNavigation.vue'
-import CategoryCell from '@/components/CategoryCell.vue'
-import CategorySidebar from '@/components/CategorySidebar.vue'
+import {CategoryCell} from '@/components'
+import {CategorySidebar} from '@/components'
+import {CategoryApi} from '@doki-land/echo-api'
+import {type CategoryInfo} from '@doki-land/echo-api/models'
+import {onMounted, ref} from 'vue'
+import {useFluent} from 'fluent-vue'
+
+const categoryApi = new CategoryApi()
+const categories = ref<CategoryInfo[]>([])
+const {$t} = useFluent()
+
+// 加载分类列表
+const loadCategories = async () => {
+  try {
+    categories.value = (await categoryApi.categoryQueryPost({user_id: '1'})).data
+  } catch (error) {
+    console.error('加载分类列表失败:', error)
+  }
+}
+
+onMounted(() => {
+  loadCategories()
+})
 </script>
 
 <style lang="scss" scoped>

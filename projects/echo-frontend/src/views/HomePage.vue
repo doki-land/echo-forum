@@ -1,10 +1,10 @@
 <template>
   <div class="home-page">
-    <HeaderNavigation />
+    <HeaderNavigation/>
     <div class="content">
       <div class="sections">
         <div v-for="section in sections" :key="section.title" class="section-wrapper">
-          <SectionCard :section="section" />
+          <SectionCard :section="section"/>
           <div class="section-categories">
             <CategoryCard
               v-for="category in section.categories"
@@ -21,8 +21,8 @@
 <script setup lang="ts">
 import HeaderNavigation from '@/components/HeaderNavigation.vue'
 import SectionCard from '@/components/SectionCard.vue'
-import CategoryCard from '@/components/CategoryCard.vue'
-import { sections, categories } from '@/mock'
+import {CategoryCard} from '@/components'
+import {sections} from '@/mock'
 </script>
 
 <style lang="scss" scoped>

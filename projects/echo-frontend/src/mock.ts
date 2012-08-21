@@ -26,24 +26,6 @@ export interface Category {
     color: string
 }
 
-export const navItems: NavItem[] = [
-    {
-        to: '/home',
-        label: '首页'
-    },
-    {
-        to: '/users',
-        label: '用户列表'
-    },
-    {
-        to: '/posts',
-        label: '帖子列表'
-    },
-    {
-        to: '/categories',
-        label: '分类'
-    }
-]
 
 export const sections: Section[] = [
     {

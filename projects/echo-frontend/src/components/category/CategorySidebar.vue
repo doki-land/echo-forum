@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import {ref} from 'vue'
-import CategoryFilter from "@/components/CategoryFilter.vue";
+import CategoryFilter from "./CategoryFilter.vue";
 import TopicFilter from "@/components/TopicFilter.vue";
 
 // 模拟数据，后续需要替换为真实的API调用

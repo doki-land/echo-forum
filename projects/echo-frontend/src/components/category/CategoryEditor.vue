@@ -1,27 +1,27 @@
 <template>
   <div class="dialog">
     <div class="dialog-content">
-      <h3>{{ isEdit ? '编辑分类' : '新建分类' }}</h3>
+      <h3>{{ isEdit ? $t('category-edit') : $t('category-create') }}</h3>
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
-          <label>名称</label>
+          <label>{{ $t('category-name') }}</label>
           <input type="text" v-model="formData.name" required>
         </div>
         <div class="form-group">
-          <label>链接</label>
+          <label>{{ $t('category-link') }}</label>
           <input type="text" v-model="formData.link" pattern="[a-z0-9-]+" title="只能包含小写字母、数字和连字符">
         </div>
         <div class="form-group">
-          <label>颜色</label>
+          <label>{{ $t('category-color') }}</label>
           <input type="color" v-model="formData.color" required>
         </div>
         <div class="form-group">
-          <label>描述</label>
+          <label>{{ $t('category-description') }}</label>
           <textarea v-model="formData.description" rows="3"></textarea>
         </div>
         <div class="dialog-actions">
-          <button type="button" class="cancel-btn" @click="$emit('cancel')">取消</button>
-          <button type="submit" class="submit-btn">确定</button>
+          <button type="button" class="cancel-btn" @click="$emit('cancel')">{{ $t('cancel') }}</button>
+          <button type="submit" class="submit-btn">{{ $t('confirm') }}</button>
         </div>
       </form>
     </div>
@@ -45,13 +45,7 @@ const {$t} = useFluent()
 const isEdit = computed(() => !!props.category)
 
 
-// 生成随机颜色
-function generateRandomColor() {
-  const hue = Math.floor(Math.random() * 360)
-  const saturation = 60 + Math.floor(Math.random() * 20) // 60-80%
-  const lightness = 45 + Math.floor(Math.random() * 10) // 45-55%
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`
-}
+import { generateRandomColor } from '@/utils/color'
 
 // 表单数据
 const formData = ref<CategoryCreate>({

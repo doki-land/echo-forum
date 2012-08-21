@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import CategorySidebar from '@/components/CategorySidebar.vue'
+import {CategorySidebar} from '@/components'
 import {computed, ref} from 'vue'
 import type {Post} from '@/types'
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
