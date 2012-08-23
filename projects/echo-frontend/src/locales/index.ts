@@ -1,8 +1,8 @@
 import {createFluentVue} from 'fluent-vue'
 import {FluentBundle} from '@fluent/bundle'
 import {FluentResource} from "@fluent/bundle/esm/resource"
-import zhHansResource from './locales/zh-Hans.ftl?raw'
-import enUSResource from './locales/en-US.ftl?raw'
+import zhHansResource from './zh-Hans.ftl?raw'
+import enUSResource from './en-US.ftl?raw'
 
 // 创建语言包实例
 const zhHansBundle = new FluentBundle('zh-Hans')

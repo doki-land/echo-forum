@@ -13,7 +13,6 @@ import CategoryList from '@/views/admin/CategoryList.vue';
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
-        name: 'home',
         component: HomePage
     },
     {
@@ -26,27 +25,22 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/users',
-        name: 'UserList',
         component: UserList
     },
     {
         path: '/posts',
-        name: 'PostList',
         component: PostList
     },
     {
         path: '/@:user_id',
-        name: 'UserProfile',
         component: UserProfile
     },
     {
         path: '/u/:user_id',
-        name: 'UserProfile',
         component: UserProfile
     },
     {
         path: '/posts/:id',
-        name: 'post-detail',
         component: PostDetail
     },
     {
@@ -55,24 +49,23 @@ const routes: RouteRecordRaw[] = [
         children: [
             {
                 path: 'pages',
-                name: 'admin-pages',
                 component: AdminPageList
             },
             {
                 path: 'users',
-                name: 'admin-users',
                 component: AdminUserList
             },
             {
                 path: 'category',
-                name: 'admin-category',
                 component: CategoryList
             }
         ]
     }
 ]
 
-export const router = createRouter({
+export const echoRouter = createRouter({
     history: createWebHistory(),
     routes
 })
+
+export default echoRouter;

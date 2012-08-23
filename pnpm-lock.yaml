@@ -19,9 +19,6 @@ importers:
 
   projects/echo-frontend:
     dependencies:
-      '@doki-land/echo-api':
-        specifier: workspace:*
-        version: link:../echo-api
       '@fluent/bundle':
         specifier: ^0.18.0
         version: 0.18.0
@@ -31,6 +28,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.3.0
         version: 10.11.1(vue@3.5.13)
+      axios:
+        specifier: ^1.8.4
+        version: 1.8.4
       fluent-vue:
         specifier: ^3.7.1
         version: 3.7.1(@fluent/bundle@0.18.0)(vue@3.5.13)
@@ -40,6 +40,9 @@ importers:
       sass:
         specifier: ^1.86.0
         version: 1.86.0
+      url:
+        specifier: ^0.11.4
+        version: 0.11.4
       vite:
         specifier: ^6.2.3
         version: 6.2.3(sass@1.86.0)

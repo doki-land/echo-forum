@@ -1,5 +1,6 @@
 pub use self::{
-    category_model::{CategoryId, CategoryInfo, CategoryCreate, CategoryEdit, CategoryQuery},
+    category_model::{CategoryCreate, CategoryEdit, CategoryId, CategoryInfo, CategoryQuery},
+    topic_model::{TopicEdit, TopicId, TopicInfo},
     user_model::{UserCreate, UserId},
 };
 use chrono::{DateTime, Local};
@@ -10,5 +11,5 @@ use sqlx::FromRow;
 mod category_model;
 // mod post_model;
 // mod section_model;
-// mod tag_model;
+mod topic_model;
 mod user_model;

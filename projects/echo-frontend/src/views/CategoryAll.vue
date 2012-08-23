@@ -18,6 +18,7 @@ import {CategoryCell, CategorySidebar} from '@/components'
 import {type CategoryInfo} from '@client/models'
 import {onMounted, ref} from 'vue'
 import {useFluent} from 'fluent-vue'
+import {CategoryApi} from "@client/apis/category-api";
 
 const categoryApi = new CategoryApi()
 const categories = ref<CategoryInfo[]>([])
