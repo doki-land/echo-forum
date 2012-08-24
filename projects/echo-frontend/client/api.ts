@@ -14,5 +14,6 @@
 
 
 export * from './apis/category-api';
+export * from './apis/topic-api';
 export * from './apis/user-api';
 

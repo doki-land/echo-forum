@@ -28,7 +28,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -63,7 +63,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -107,7 +107,7 @@ export const UserApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -121,7 +121,7 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -144,7 +144,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -154,7 +154,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary Register a new user
+         * @summary Create new user with password
          * @param {UserCreate} [userCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -174,7 +174,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
 export class UserApi extends BaseAPI {
     /**
      * 
-     * @summary Register a new user
+     * @summary Create new user with password
      * @param {UserCreate} [userCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -186,7 +186,7 @@ export class UserApi extends BaseAPI {
 
     /**
      * 
-     * @summary Register a new user
+     * @summary Create new user with password
      * @param {UserCreate} [userCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -19,26 +19,26 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
-import { CategoryCreate } from '../models';
+import { TopicCreate } from '../models';
 // @ts-ignore
-import { CategoryEdit } from '../models';
+import { TopicEdit } from '../models';
 // @ts-ignore
-import { CategoryInfo } from '../models';
+import { TopicInfo } from '../models';
 /**
- * CategoryApi - axios parameter creator
+ * TopicApi - axios parameter creator
  * @export
  */
-export const CategoryApiAxiosParamCreator = function (configuration?: Configuration) {
+export const TopicApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePut: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/create`;
+        topicCreatePut: async (topicCreate?: TopicCreate, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/create`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -57,8 +57,8 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof categoryCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(categoryCreate !== undefined ? categoryCreate : {}) : (categoryCreate || "");
+            const needsSerialization = (typeof topicCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(topicCreate !== undefined ? topicCreate : {}) : (topicCreate || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -67,13 +67,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePut_1: async (categoryCreate?: CategoryCreate, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/create`;
+        topicCreatePut_1: async (topicCreate?: TopicCreate, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/create`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -92,8 +92,8 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof categoryCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(categoryCreate !== undefined ? categoryCreate : {}) : (categoryCreate || "");
+            const needsSerialization = (typeof topicCreate !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(topicCreate !== undefined ? topicCreate : {}) : (topicCreate || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -102,13 +102,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryDeleteDelete: async (body?: string, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/delete`;
+        topicDeleteDelete: async (body?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/delete`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -137,13 +137,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryDeleteDelete_2: async (body?: string, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/delete`;
+        topicDeleteDelete_2: async (body?: string, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/delete`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -172,13 +172,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryEditPatch: async (categoryEdit?: CategoryEdit, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/edit`;
+        topicEditPatch: async (topicEdit?: TopicEdit, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/edit`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -197,8 +197,8 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof categoryEdit !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(categoryEdit !== undefined ? categoryEdit : {}) : (categoryEdit || "");
+            const needsSerialization = (typeof topicEdit !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(topicEdit !== undefined ? topicEdit : {}) : (topicEdit || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -207,13 +207,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryEditPatch_3: async (categoryEdit?: CategoryEdit, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/edit`;
+        topicEditPatch_3: async (topicEdit?: TopicEdit, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/edit`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -232,8 +232,8 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
             delete localVarUrlObj.search;
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof categoryEdit !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(categoryEdit !== undefined ? categoryEdit : {}) : (categoryEdit || "");
+            const needsSerialization = (typeof topicEdit !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(topicEdit !== undefined ? topicEdit : {}) : (topicEdit || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -242,13 +242,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryQueryPost: async (body?: object, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/query`;
+        topicQueryPost: async (body?: object, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/query`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -277,13 +277,13 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryQueryPost_4: async (body?: object, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/category/query`;
+        topicQueryPost_4: async (body?: object, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/topic/query`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -314,20 +314,20 @@ export const CategoryApiAxiosParamCreator = function (configuration?: Configurat
 };
 
 /**
- * CategoryApi - functional programming interface
+ * TopicApi - functional programming interface
  * @export
  */
-export const CategoryApiFp = function(configuration?: Configuration) {
+export const TopicApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryCreatePut(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryCreatePut(categoryCreate, options);
+        async topicCreatePut(topicCreate?: TopicCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicCreatePut(topicCreate, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -335,13 +335,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryCreatePut_1(categoryCreate, options);
+        async topicCreatePut_1(topicCreate?: TopicCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicCreatePut_1(topicCreate, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -349,13 +349,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryDeleteDelete(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryDeleteDelete(body, options);
+        async topicDeleteDelete(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicDeleteDelete(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -363,13 +363,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryDeleteDelete_2(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryDeleteDelete_2(body, options);
+        async topicDeleteDelete_2(body?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicDeleteDelete_2(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -377,13 +377,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryEditPatch(categoryEdit?: CategoryEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryEditPatch(categoryEdit, options);
+        async topicEditPatch(topicEdit?: TopicEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicEditPatch(topicEdit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -391,13 +391,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryEditPatch_3(categoryEdit, options);
+        async topicEditPatch_3(topicEdit?: TopicEdit, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicEditPatch_3(topicEdit, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -405,13 +405,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryQueryPost(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryInfo>>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryQueryPost(body, options);
+        async topicQueryPost(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TopicInfo>>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicQueryPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -419,13 +419,13 @@ export const CategoryApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async categoryQueryPost_4(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CategoryInfo>>> {
-            const localVarAxiosArgs = await CategoryApiAxiosParamCreator(configuration).categoryQueryPost_4(body, options);
+        async topicQueryPost_4(body?: object, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TopicInfo>>> {
+            const localVarAxiosArgs = await TopicApiAxiosParamCreator(configuration).topicQueryPost_4(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -435,195 +435,195 @@ export const CategoryApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * CategoryApi - factory interface
+ * TopicApi - factory interface
  * @export
  */
-export const CategoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const TopicApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePut(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
-            return CategoryApiFp(configuration).categoryCreatePut(categoryCreate, options).then((request) => request(axios, basePath));
+        topicCreatePut(topicCreate?: TopicCreate, options?: any): AxiosPromise<string> {
+            return TopicApiFp(configuration).topicCreatePut(topicCreate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Create new category
-         * @param {CategoryCreate} [categoryCreate] 
+         * @summary Create new topic
+         * @param {TopicCreate} [topicCreate] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any): AxiosPromise<string> {
-            return CategoryApiFp(configuration).categoryCreatePut_1(categoryCreate, options).then((request) => request(axios, basePath));
+        topicCreatePut_1(topicCreate?: TopicCreate, options?: any): AxiosPromise<string> {
+            return TopicApiFp(configuration).topicCreatePut_1(topicCreate, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryDeleteDelete(body?: string, options?: any): AxiosPromise<number> {
-            return CategoryApiFp(configuration).categoryDeleteDelete(body, options).then((request) => request(axios, basePath));
+        topicDeleteDelete(body?: string, options?: any): AxiosPromise<number> {
+            return TopicApiFp(configuration).topicDeleteDelete(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Delete category info
+         * @summary Delete topic
          * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryDeleteDelete_2(body?: string, options?: any): AxiosPromise<number> {
-            return CategoryApiFp(configuration).categoryDeleteDelete_2(body, options).then((request) => request(axios, basePath));
+        topicDeleteDelete_2(body?: string, options?: any): AxiosPromise<number> {
+            return TopicApiFp(configuration).topicDeleteDelete_2(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryEditPatch(categoryEdit?: CategoryEdit, options?: any): AxiosPromise<number> {
-            return CategoryApiFp(configuration).categoryEditPatch(categoryEdit, options).then((request) => request(axios, basePath));
+        topicEditPatch(topicEdit?: TopicEdit, options?: any): AxiosPromise<number> {
+            return TopicApiFp(configuration).topicEditPatch(topicEdit, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Edit category info
-         * @param {CategoryEdit} [categoryEdit] 
+         * @summary Edit topic
+         * @param {TopicEdit} [topicEdit] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any): AxiosPromise<number> {
-            return CategoryApiFp(configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(axios, basePath));
+        topicEditPatch_3(topicEdit?: TopicEdit, options?: any): AxiosPromise<number> {
+            return TopicApiFp(configuration).topicEditPatch_3(topicEdit, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryQueryPost(body?: object, options?: any): AxiosPromise<Array<CategoryInfo>> {
-            return CategoryApiFp(configuration).categoryQueryPost(body, options).then((request) => request(axios, basePath));
+        topicQueryPost(body?: object, options?: any): AxiosPromise<Array<TopicInfo>> {
+            return TopicApiFp(configuration).topicQueryPost(body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Query category info
+         * @summary Query topic info
          * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        categoryQueryPost_4(body?: object, options?: any): AxiosPromise<Array<CategoryInfo>> {
-            return CategoryApiFp(configuration).categoryQueryPost_4(body, options).then((request) => request(axios, basePath));
+        topicQueryPost_4(body?: object, options?: any): AxiosPromise<Array<TopicInfo>> {
+            return TopicApiFp(configuration).topicQueryPost_4(body, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * CategoryApi - object-oriented interface
+ * TopicApi - object-oriented interface
  * @export
- * @class CategoryApi
+ * @class TopicApi
  * @extends {BaseAPI}
  */
-export class CategoryApi extends BaseAPI {
+export class TopicApi extends BaseAPI {
     /**
      * 
-     * @summary Create new category
-     * @param {CategoryCreate} [categoryCreate] 
+     * @summary Create new topic
+     * @param {TopicCreate} [topicCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryCreatePut(categoryCreate?: CategoryCreate, options?: any) {
-        return CategoryApiFp(this.configuration).categoryCreatePut(categoryCreate, options).then((request) => request(this.axios, this.basePath));
+    public topicCreatePut(topicCreate?: TopicCreate, options?: any) {
+        return TopicApiFp(this.configuration).topicCreatePut(topicCreate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Create new category
-     * @param {CategoryCreate} [categoryCreate] 
+     * @summary Create new topic
+     * @param {TopicCreate} [topicCreate] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryCreatePut_1(categoryCreate?: CategoryCreate, options?: any) {
-        return CategoryApiFp(this.configuration).categoryCreatePut_1(categoryCreate, options).then((request) => request(this.axios, this.basePath));
+    public topicCreatePut_1(topicCreate?: TopicCreate, options?: any) {
+        return TopicApiFp(this.configuration).topicCreatePut_1(topicCreate, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Delete category info
+     * @summary Delete topic
      * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryDeleteDelete(body?: string, options?: any) {
-        return CategoryApiFp(this.configuration).categoryDeleteDelete(body, options).then((request) => request(this.axios, this.basePath));
+    public topicDeleteDelete(body?: string, options?: any) {
+        return TopicApiFp(this.configuration).topicDeleteDelete(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Delete category info
+     * @summary Delete topic
      * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryDeleteDelete_2(body?: string, options?: any) {
-        return CategoryApiFp(this.configuration).categoryDeleteDelete_2(body, options).then((request) => request(this.axios, this.basePath));
+    public topicDeleteDelete_2(body?: string, options?: any) {
+        return TopicApiFp(this.configuration).topicDeleteDelete_2(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Edit category info
-     * @param {CategoryEdit} [categoryEdit] 
+     * @summary Edit topic
+     * @param {TopicEdit} [topicEdit] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryEditPatch(categoryEdit?: CategoryEdit, options?: any) {
-        return CategoryApiFp(this.configuration).categoryEditPatch(categoryEdit, options).then((request) => request(this.axios, this.basePath));
+    public topicEditPatch(topicEdit?: TopicEdit, options?: any) {
+        return TopicApiFp(this.configuration).topicEditPatch(topicEdit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Edit category info
-     * @param {CategoryEdit} [categoryEdit] 
+     * @summary Edit topic
+     * @param {TopicEdit} [topicEdit] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryEditPatch_3(categoryEdit?: CategoryEdit, options?: any) {
-        return CategoryApiFp(this.configuration).categoryEditPatch_3(categoryEdit, options).then((request) => request(this.axios, this.basePath));
+    public topicEditPatch_3(topicEdit?: TopicEdit, options?: any) {
+        return TopicApiFp(this.configuration).topicEditPatch_3(topicEdit, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Query category info
+     * @summary Query topic info
      * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryQueryPost(body?: object, options?: any) {
-        return CategoryApiFp(this.configuration).categoryQueryPost(body, options).then((request) => request(this.axios, this.basePath));
+    public topicQueryPost(body?: object, options?: any) {
+        return TopicApiFp(this.configuration).topicQueryPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Query category info
+     * @summary Query topic info
      * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CategoryApi
+     * @memberof TopicApi
      */
-    public categoryQueryPost_4(body?: object, options?: any) {
-        return CategoryApiFp(this.configuration).categoryQueryPost_4(body, options).then((request) => request(this.axios, this.basePath));
+    public topicQueryPost_4(body?: object, options?: any) {
+        return TopicApiFp(this.configuration).topicQueryPost_4(body, options).then((request) => request(this.axios, this.basePath));
     }
 
 }

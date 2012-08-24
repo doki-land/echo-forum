@@ -151,3 +151,72 @@ $$;
 
 alter function category_update(bigint, text, text, text, bigint) owner to postgres;
 
+create function topic_create("@topic_id" bigint, "@link" text, "@name" text, "@description" text, "@who" bigint) returns void
+    language plpgsql
+as
+$$
+BEGIN
+    INSERT INTO topic_info
+    (
+        topic_id, link, name, description, create_user, update_user
+    )
+    VALUES
+        (
+            "@topic_id", "@link", "@name", "@description", "@who", "@who"
+        );
+END;
+$$;
+
+alter function topic_create(bigint, text, text, text, bigint) owner to postgres;
+
+create function topic_delete("@topic_id" bigint) returns void
+    language plpgsql
+as
+$$
+BEGIN
+    DELETE FROM topic_info WHERE topic_id = "@topic_id";
+END;
+$$;
+
+alter function topic_delete(bigint) owner to postgres;
+
+create function topic_get_by_id("@topic_id" bigint) returns SETOF topic_info
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY SELECT * FROM topic_info WHERE topic_id = "@topic_id";
+END;
+$$;
+
+alter function topic_get_by_id(bigint) owner to postgres;
+
+create function topic_list() returns SETOF topic_info
+    language plpgsql
+as
+$$
+BEGIN
+    RETURN QUERY SELECT * FROM topic_info ORDER BY create_time DESC;
+END;
+$$;
+
+alter function topic_list() owner to postgres;
+
+create function topic_update("@topic_id" bigint, "@name" text, "@description" text, "@who" bigint) returns void
+    language plpgsql
+as
+$$
+BEGIN
+    UPDATE topic_info
+    SET
+        name        = coalesce("@name", name),
+        description = coalesce("@description", description),
+        update_time = current_timestamp,
+        update_user = "@who"
+    WHERE TRUE
+      AND topic_id = "@topic_id";
+END;
+$$;
+
+alter function topic_update(bigint, text, text, bigint) owner to postgres;
+
