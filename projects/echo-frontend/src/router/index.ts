@@ -9,6 +9,7 @@ import AdminUserList from '@/views/admin/UserList.vue';
 import UserProfile from "@/views/user/UserProfile.vue";
 import CategoryAll from '@/views/CategoryAll.vue';
 import CategoryList from '@/views/admin/CategoryList.vue';
+import TopicList from "@/views/admin/TopicList.vue";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -49,15 +50,23 @@ const routes: RouteRecordRaw[] = [
         children: [
             {
                 path: 'pages',
+                name: 'PageAdmin',
                 component: AdminPageList
             },
             {
                 path: 'users',
+                name: 'UserAdmin',
                 component: AdminUserList
             },
             {
-                path: 'category',
+                path: 'categories',
+                name: 'CategoryAdmin',
                 component: CategoryList
+            },
+            {
+                path: 'topics',
+                name: 'TopicAdmin',
+                component: TopicList
             }
         ]
     }

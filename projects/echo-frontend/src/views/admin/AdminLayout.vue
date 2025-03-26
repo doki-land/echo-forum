@@ -30,7 +30,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      
+
       .nav-item {
         padding: 0.75rem 1.5rem;
         text-decoration: none;

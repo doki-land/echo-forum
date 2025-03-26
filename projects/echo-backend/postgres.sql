@@ -133,43 +133,6 @@ $$;
 
 alter function category_create(bigint, text, text, text, text, bigint) owner to postgres;
 
-create function category_update("@category_id" bigint, "@name" text, "@description" text, "@color" text, "@who" bigint) returns void
-    language plpgsql
-as
-$$
-BEGIN
-    UPDATE category_info
-    SET
-        name        = coalesce("@name", name),
-        description = coalesce("@description", description),
-        color       = coalesce("@color", color),
-        update_time = current_timestamp,
-        update_user = "@who"
-    WHERE TRUE
-      AND category_id = "@category_id";
-END;
-$$;
-
-alter function category_update(bigint, text, text, text, bigint) owner to postgres;
-
-create function topic_create("@topic_id" bigint, "@link" text, "@name" text, "@description" text, "@who" bigint) returns void
-    language plpgsql
-as
-$$
-BEGIN
-    INSERT INTO topic_info
-    (
-        topic_id, link, name, description, create_user, update_user
-    )
-    VALUES
-        (
-            "@topic_id", "@link", "@name", "@description", "@who", "@who"
-        );
-END;
-$$;
-
-alter function topic_create(bigint, text, text, text, bigint) owner to postgres;
-
 create function topic_delete("@topic_id" bigint) returns void
     language plpgsql
 as
@@ -203,15 +166,35 @@ $$;
 
 alter function topic_list() owner to postgres;
 
-create function topic_update("@topic_id" bigint, "@name" text, "@description" text, "@who" bigint) returns void
+create function topic_create("@topic_id" bigint, "@link" text, "@name" text, "@description" text, "@color" text, "@who" bigint) returns void
+    language plpgsql
+as
+$$
+BEGIN
+    INSERT INTO topic_info
+    (
+        topic_id, link, name, description, color, create_user, update_user
+    )
+    VALUES
+        (
+            "@topic_id", "@link", "@name", "@description", "@color", "@who", "@who"
+        );
+END;
+$$;
+
+alter function topic_create(bigint, text, text, text, text, bigint) owner to postgres;
+
+create function topic_update("@topic_id" bigint, "@link" text, "@name" text, "@description" text, "@color" text, "@who" bigint) returns void
     language plpgsql
 as
 $$
 BEGIN
     UPDATE topic_info
     SET
+        link        = coalesce("@link", link),
         name        = coalesce("@name", name),
         description = coalesce("@description", description),
+        color       = coalesce("@color", color),
         update_time = current_timestamp,
         update_user = "@who"
     WHERE TRUE
@@ -219,5 +202,25 @@ BEGIN
 END;
 $$;
 
-alter function topic_update(bigint, text, text, bigint) owner to postgres;
+alter function topic_update(bigint, text, text, text, text, bigint) owner to postgres;
+
+create function category_update("@category_id" bigint, "@name" text, "@description" text, "@color" text, "@topics" bigint[], "@who" bigint) returns void
+    language plpgsql
+as
+$$
+BEGIN
+    UPDATE category_info
+    SET
+        name        = coalesce("@name", name),
+        description = coalesce("@description", description),
+        color       = coalesce("@color", color),
+        topics      = coalesce("@topics", topics),
+        update_time = current_timestamp,
+        update_user = "@who"
+    WHERE TRUE
+      AND category_id = "@category_id";
+END;
+$$;
+
+alter function category_update(bigint, text, text, text, bigint[], bigint) owner to postgres;
 
