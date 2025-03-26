@@ -4,9 +4,10 @@
 
 pub use crate::errors::{AppError, Result};
 use crate::models::{CategoryCreate, CategoryEdit, CategoryId, CategoryInfo, CategoryQuery, TopicCreate, TopicEdit, TopicId, TopicInfo, TopicQuery, UserCreate, UserId};
-use poem::{Endpoint, EndpointExt, IntoResponse};
-use poem_openapi::{payload::Json, OpenApi, Tags};
+use poem::{Endpoint, EndpointExt, IntoResponse, Route};
+use poem_openapi::{payload::Json, OpenApi, OpenApiService, Tags};
 use sqlx::{Pool, Postgres};
+
 
 mod api_getter;
 mod database;

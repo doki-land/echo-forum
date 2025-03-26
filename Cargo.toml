@@ -3,9 +3,9 @@ resolver = "2"
 members = ["projects/*"]
 default-members = [
     "projects/echo-backend",
+    "projects/echo-worker",
 ]
 exclude = [
-    "projects/echo-api",
     "projects/echo-frontend",
     "projects/.DS_Store",
 ]
