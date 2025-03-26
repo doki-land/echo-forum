@@ -3,7 +3,7 @@ resolver = "2"
 members = ["projects/*"]
 default-members = [
     "projects/echo-backend",
-    "projects/echo-worker",
+    "projects/echo-cloudflare",
 ]
 exclude = [
     "projects/echo-frontend",
