@@ -57,7 +57,8 @@ create table topic_info
     update_time timestamp with time zone default CURRENT_TIMESTAMP not null,
     update_user bigint                                             not null,
     type        smallint                 default 0                 not null,
-    status      smallint                 default 0
+    status      smallint                 default 0,
+    color       text                     default '#FFFFFF'::text   not null
 );
 
 alter table topic_info
